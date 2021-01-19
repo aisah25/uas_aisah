@@ -14,14 +14,15 @@ class Data_barang extends CI_Controller{
         $kategori =$this->input->post('kategori');
         $harga =$this->input->post('harga');
         $stok =$this->input->post('stok');
-        $gambar = $_FILES['gambar']['name'];
+        $gambar = $_FILES['gambar'];
+        var_dump('$gambar');
         if ($gambar=''){}else{
             $config ['upload_path'] = './uploads';
             $config ['allowed_types'] = 'jpg|jpeg|png|jfif';
 
             $this->load->library('upload',$config);
             if(!$this->upload->do_upload('gambar')){
-                echo "Gagal Upload";
+                echo "Gagal Upload"; die();
             }else{
                 $gambar=$this->upload->data('file_name');
             }
